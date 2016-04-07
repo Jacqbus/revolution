@@ -16,7 +16,7 @@
  * @package modx
  */
 /* fix for PHP float bug: http://bugs.php.net/bug.php?id=53632 (php 4 <= 4.4.9 and php 5 <= 5.3.4) */
-if (strstr(str_replace('.','',serialize(array_merge($_GET, $_POST, $_COOKIE))), '22250738585072011')) {
+if (strstr(str_replace('.','',serialize(array_merge($_GET, $_POST, $_COOKIE))), '22250738585072011') && (@version_compare(PHP_VERSION, '4.4.9', '<=')  || (@version_compare(PHP_VERSION, '5.0.0', '>') && @version_compare(PHP_VERSION, '5.3.4', '<=')))) {
     header('Status: 422 Unprocessable Entity');
     die();
 }
